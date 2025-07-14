@@ -1,4 +1,5 @@
 import './App.css';
+import test from './func/log';
 import { add, subtract } from './func/math';
 
 function App() {
@@ -7,6 +8,8 @@ function App() {
   console.log(obj1 === obj2,Object.is(obj1, obj2));
   console.log(+0 === -0, Object.is(+0, -0));
   console.log(NaN,Number.NaN, NaN === Number.NaN, Object.is(NaN, Number.NaN));
+
+  test("App.js에서 log 호출");
   return (
     <div className="App">
       <h1>리액트 테스트</h1>

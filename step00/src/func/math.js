@@ -7,3 +7,5 @@ export function add(a, b) {
 const subtract = (a, b) => a - b;
 
 export { subtract };
+
+// export {subtract, add};
