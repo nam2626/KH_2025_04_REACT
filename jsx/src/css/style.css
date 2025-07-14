@@ -1,0 +1,9 @@
+.bold{
+    font-weight: bold;
+}
+
+p{
+    color: red;
+    font-size: 20px;
+    font-family: '궁서체';
+}

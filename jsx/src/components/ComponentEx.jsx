@@ -1,3 +1,5 @@
+import '../css/style.css';
+
 export default function ComponentEx() {
     //이벤트 목록
     //https://react.dev/reference/react-dom/components/common#react-event-object
@@ -44,5 +46,12 @@ export default function ComponentEx() {
         </ul>
         <hr></hr>
         {/* 배열 출력 - 사용자 정보 */}
+        {
+            users.map((user, index) => (
+                <p key={index} className='bold'>
+                    {user.name} / {user.age} / {user.gender}
+                </p>
+            ))
+        }
     </div>;
 }
