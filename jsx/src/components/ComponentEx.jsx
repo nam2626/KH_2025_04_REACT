@@ -1,4 +1,6 @@
 export default function ComponentEx() {
+    //이벤트 목록
+    //https://react.dev/reference/react-dom/components/common#react-event-object
     //경고창 띄우는 함수
     const showAlert = () => {
         alert('경고창이 출력되었습니다!');
