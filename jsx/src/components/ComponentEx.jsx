@@ -5,7 +5,14 @@ export default function ComponentEx() {
     const showAlert = () => {
         alert('경고창이 출력되었습니다!');
     };
+    // 배열 생성
+    const items = ['item1', 'item2', 'item3'];    
 
+    // 스타일 객체 생성
+    const style = {
+        color: 'blue',
+        fontWeight: 'bold'
+    };
     return <div>
         <h2>태그는 반드시 닫아야됨</h2>
         <label htmlFor="id">아이디 : </label>
@@ -20,6 +27,13 @@ export default function ComponentEx() {
             alert(`입력한 아이디 : ${document.querySelector('#id').value}`);
 
         }}>경고창 출력 - 2</button>
-
+        <hr></hr>
+        {/* 배열 출력 */}
+        <h3>반복적인 UI 생성</h3>
+        <ul>
+            {items.map((item, index) => (
+                <li style={style}>{item}</li>
+            ))}
+        </ul>
     </div>;
 }
