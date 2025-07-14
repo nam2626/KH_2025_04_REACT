@@ -22,6 +22,9 @@ export default function ComponentEx() {
         {name : '김영희', age: 25, gender: '여'},
         {name : '이철수', age: 40, gender: '남'}
     ];
+
+    const age = 15;
+
     return <div>
         <h2>태그는 반드시 닫아야됨</h2>
         <label htmlFor="id">아이디 : </label>
@@ -52,6 +55,11 @@ export default function ComponentEx() {
                     {user.name} / {user.age} / {user.gender}
                 </p>
             ))
+        }
+        <hr></hr>
+        <h2>조건부 렌더링</h2>
+        {
+            age >= 20 ? <p>성인입니다.</p> : <p>미성년자입니다.</p>
         }
     </div>;
 }
