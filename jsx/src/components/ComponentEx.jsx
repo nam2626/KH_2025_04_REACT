@@ -13,6 +13,13 @@ export default function ComponentEx() {
         color: 'blue',
         fontWeight: 'bold'
     };
+
+    // 배열 생성, 사용자 정보 이름, 나이, 성별 3건 저장하는 배열 생성
+    const users = [
+        {name : '홍길동', age: 30, gender: '남'},
+        {name : '김영희', age: 25, gender: '여'},
+        {name : '이철수', age: 40, gender: '남'}
+    ];
     return <div>
         <h2>태그는 반드시 닫아야됨</h2>
         <label htmlFor="id">아이디 : </label>
@@ -35,5 +42,7 @@ export default function ComponentEx() {
                 <li style={style}>{item}</li>
             ))}
         </ul>
+        <hr></hr>
+        {/* 배열 출력 - 사용자 정보 */}
     </div>;
 }
