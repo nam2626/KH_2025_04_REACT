@@ -1,7 +1,16 @@
 import './App.css';
 import ButtonOK from './components/ButtonOK';
 import ButtonProps from './components/ButtonProps';
+import ItemList from './components/ItemList';
 import PropsEx from './components/PropsEx';
+
+const profile = [
+	{ name: 'Alex', age: 20, job: 'developer' },
+	{ name: 'Bob', age: 17, job: 'student' },
+	{ name: 'Charlie', age: 20, job: 'designer' },
+	{ name: 'David', age: 30, job: 'developer' },
+	{ name: 'Ethan', age: 15, job: 'student' },
+];
 
 function App() {
   return (
@@ -14,6 +23,8 @@ function App() {
       <ButtonProps name="김철수" />
       <br></br>
       <PropsEx name="박철수" age={20} />
+      <br></br>
+      <ItemList profile={profile} />
     </div>
   );
 }
