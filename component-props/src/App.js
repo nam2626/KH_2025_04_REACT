@@ -3,6 +3,7 @@ import ButtonCount from './components/ButtonCount';
 import ButtonOK from './components/ButtonOK';
 import ButtonProps from './components/ButtonProps';
 import ItemList from './components/ItemList';
+import Product from './components/Product';
 import PropsEx from './components/PropsEx';
 
 const profile = [
@@ -35,6 +36,8 @@ function App() {
       <ItemList profile={profile} />
       <hr/>
       <ButtonCount count={obj.count} addCount={addCount} />
+      <hr/>
+      <Product/>
     </div>
   );
 }
