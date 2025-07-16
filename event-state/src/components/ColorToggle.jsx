@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default () => {
   const [toggle, setToggle] = useState(true);
   const toggleFunction = () => setToggle(!toggle);
-  
+  console.log("ColorToggle 렌더링");
   return (
     <div>
       <p style={{ color: toggle ? 'red' : 'blue' }}>
