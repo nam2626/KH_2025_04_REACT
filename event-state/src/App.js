@@ -6,6 +6,7 @@ import ColorToggle from './components/ColorToggle';
 import LoginForm from './components/LoginForm';
 import ListState from './components/ListState';
 import NumberList from './components/NumberList';
+import RegisterComponent from './components/RegisterComponent';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
       <ListState/>
       <hr/>
       <NumberList/>
+      <hr/>
+      <RegisterComponent/>
     </div>
   );
 }

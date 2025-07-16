@@ -30,7 +30,7 @@ export default () => {
         <button onClick={addNumber}>Add Number</button>
       </p>
       <p>
-        numbers average :{' '}
+        numbers average :{''}
         {numbers.length > 0
           ? (numbers.reduce((acc, cur) => acc + cur, 0) / numbers.length).toFixed(2)
           : 0}
