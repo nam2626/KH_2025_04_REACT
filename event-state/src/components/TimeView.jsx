@@ -8,7 +8,7 @@ export default function TimeView() {
     //     date = new Date().toLocaleTimeString();
     //     console.log(date);
     // }, 1000);
-    console.log("TimeView 렌더링");
+    //console.log("TimeView 렌더링");
     const [date, setDate] = useState(new Date().toLocaleTimeString());
     setTimeout(() => {
         setDate(new Date().toLocaleTimeString());
