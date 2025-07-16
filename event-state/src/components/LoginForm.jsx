@@ -10,7 +10,7 @@ export default function LoginForm() {
   const changePass = (e) => {
     //pre는 현재 상태값
     setPass((pre) => {
-        console.log("바뀌기 전값 : ",pre,"바뀐 값: ",e.target.value);
+        console.log("바뀌기 전값 : ",pre,"바뀔 값: ",e.target.value);
         return e.target.value;//바뀔값
     });
   }

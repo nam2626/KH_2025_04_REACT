@@ -4,6 +4,7 @@ import TimeView from './components/TimeView';
 import CountButton from './components/CountButton';
 import ColorToggle from './components/ColorToggle';
 import LoginForm from './components/LoginForm';
+import ListState from './components/ListState';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <ColorToggle/>
       <hr/>
       <LoginForm/>
+      <hr/>
+      <ListState/>
     </div>
   );
 }
