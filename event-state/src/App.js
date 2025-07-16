@@ -5,10 +5,11 @@ import CountButton from './components/CountButton';
 import ColorToggle from './components/ColorToggle';
 import LoginForm from './components/LoginForm';
 import ListState from './components/ListState';
+import NumberList from './components/NumberList';
 
 function App() {
   return (
-    <div className="App" style={{marginBottom:'100px'}}>
+    <div className="App" style={{marginBottom:'300px'}}>
       <TimeView/>
       <hr/>
       <CountButton/>
@@ -18,6 +19,8 @@ function App() {
       <LoginForm/>
       <hr/>
       <ListState/>
+      <hr/>
+      <NumberList/>
     </div>
   );
 }
