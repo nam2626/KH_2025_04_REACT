@@ -21,6 +21,14 @@ export default () => {
       .then((data) => {
         console.log(data);
       });
+
+    /* const getWeather = async () => {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=kr&units=metric`);
+        const data = await response.json();
+        setWeather(data);
+        console.log(data);
+      };
+      getWeather(); */
   }, [city]);
   return (
     /* 
