@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 //Openweathermap API 호출해서 결과를 출력
 export default () => {
-  const [city, setCity] = useState('Seoul');
+  const [city, setCity] = useState('');
   const [weather, setWeather] = useState('');
 
   const changeCity = () => {
@@ -14,12 +14,14 @@ export default () => {
     //openweather api 호출해서
     //weather에 저장
     //호출결과를 콘솔로 출력
+    if (!city) return;
     const API_KEY = '23815d818a51ef76062d119292b5691e';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=kr&units=metric`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setWeather(data);
       });
 
     /* const getWeather = async () => {
@@ -40,7 +42,14 @@ export default () => {
     <div>
       <input type="text" id="txt" placeholder="도시명 입력" />
       <button onClick={changeCity}>날씨조회</button>
-      <p></p>
+      {weather && (
+        <div>
+          <h2>{weather.name} 날씨</h2>
+          <p>{weather.weather[0].description}</p>
+          <p>온도 : {weather.main.temp}℃</p>
+        </div>
+      )}
+      {!weather && <p>날씨 정보를 불러오는 중입니다....</p>}
     </div>
   );
 };
