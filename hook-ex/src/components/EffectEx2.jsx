@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 //Openweathermap API 호출해서 결과를 출력
 export default () => {
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('Seoul');
   const [weather, setWeather] = useState('');
 
   const changeCity = () => {
@@ -14,6 +14,13 @@ export default () => {
     //openweather api 호출해서
     //weather에 저장
     //호출결과를 콘솔로 출력
+    const API_KEY = '23815d818a51ef76062d119292b5691e';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=kr&units=metric`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   }, [city]);
   return (
     /* 
