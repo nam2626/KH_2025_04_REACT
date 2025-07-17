@@ -1,7 +1,13 @@
 {
   "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 200,
   "semi": true,
+  "trailingComma": "all",
   "singleQuote": true,
-  "trailingComma": "es5",
-  "printWidth": 100
+  "overrides": [
+    {
+      "files": ["*.jsx", "*.js"]
+    }
+  ]
 }
