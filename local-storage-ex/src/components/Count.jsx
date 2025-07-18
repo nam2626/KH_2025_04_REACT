@@ -1,7 +1,11 @@
 import { useState } from 'react';
 
 export default () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    const localCount = localStorage.getItem('count');
+    return localCount == null ? 0 : parseInt(localCount);
+  });
+
   const addCount = () => {
     setCount((prev) => {
       localStorage.setItem('count', prev + 1);
