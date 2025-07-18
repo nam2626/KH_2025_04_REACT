@@ -1,3 +1,5 @@
+import { useReducer } from 'react';
+
 //상태값 제어를 하는 함수
 function reducer(state, action) {
   switch (action.type) {
@@ -10,13 +12,14 @@ function reducer(state, action) {
   }
 }
 export default () => {
+  const [count, dispatch] = useReducer(reducer, { value: 0 });
   return (
     <div>
       <h2>reducer 예제</h2>
-      <p>count : {0}</p>
+      <p>count : {count.value}</p>
       <p>
-        <button>+</button>
-        <button>-</button>
+        <button onClick={() => dispatch({ type: 'INCREMENT' })}>+</button>
+        <button onClick={() => dispatch({ type: 'DECREMENT' })}>-</button>
       </p>
     </div>
   );

@@ -3,6 +3,7 @@ import './App.css';
 import EffectEx1 from './components/EffectEx1';
 import EffectEx2 from './components/EffectEx2';
 import RefEx from './components/RefEx';
+import CounterReducer from './components/CounterReducer';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <EffectEx2 />
       <hr></hr>
       <RefEx />
+      <hr/>
+      <CounterReducer/>
     </div>
   );
 }
