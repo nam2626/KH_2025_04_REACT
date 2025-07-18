@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 export default () => {
   const area = useRef(null);
-  const colorChange = (e) => {
+  const colorChange = useCallback((e) => {
     area.current.style.backgroundColor = e.target.value;
-  };
+  }, []);
   return (
     <div>
       <h2>useCallback 테스트</h2>
