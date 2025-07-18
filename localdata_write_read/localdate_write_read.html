@@ -22,7 +22,19 @@
           `;
         }
         document.querySelector('tbody').innerHTML = content;
+        document.querySelectorAll('.btn_remove').forEach((item) => (item.onclick = deleteData));
       }
+      function deleteData() {
+        console.log(this);
+        let key = this.parentNode.parentNode.querySelector('.key').value;
+        localStorage.removeItem(key);
+        this.parentNode.parentNode.remove();
+        // readAllData();
+      }
+      function deleteAllData() {
+        //전체 삭제 처리
+      }
+
       window.onload = () => {
         document.querySelector('#btn_save').onclick = () => {
           const key = document.querySelector('#key').value;
