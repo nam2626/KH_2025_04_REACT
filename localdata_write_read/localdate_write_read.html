@@ -6,13 +6,33 @@
     <title>local storage</title>
     <link rel="stylesheet" href="style.css" />
     <script>
+      function readAllData() {
+        let content = '';
+
+        for (i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+          let value = localStorage.getItem(key);
+          console.log(key, value);
+          content += `
+            <tr>
+              <td><input type='text' class='key' value='${key}'/></td>
+              <td><input type='text' class='data' value='${value}'/></td>
+              <td><button class='btn_remove'>삭제</button></td>
+            </tr>
+          `;
+        }
+        document.querySelector('tbody').innerHTML = content;
+      }
       window.onload = () => {
         document.querySelector('#btn_save').onclick = () => {
           const key = document.querySelector('#key').value;
           const value = document.querySelector('#text_save').value;
 
           localStorage.setItem(key, value);
+          readAllData();
         };
+
+        readAllData();
       };
     </script>
   </head>
