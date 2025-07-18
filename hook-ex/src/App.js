@@ -5,6 +5,7 @@ import EffectEx2 from './components/EffectEx2';
 import RefEx from './components/RefEx';
 import CounterReducer from './components/CounterReducer';
 import CallbackEx from './components/CallbackEx';
+import MemoEx from './components/MemoEx';
 
 function App() {
   return (
@@ -16,8 +17,10 @@ function App() {
       <RefEx />
       <hr/>
       <CounterReducer/>
-      <hr></hr>
+      <hr/>
       <CallbackEx/>
+      <hr/>
+      <MemoEx/>
     </div>
   );
 }
