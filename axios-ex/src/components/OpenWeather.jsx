@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import axios from 'axios';
 export default () => {
   //버튼 클릭했을 때 fetch 이용해서 날씨 정보 가져오기
   //weather-info div에 날씨 정보 출력하기
@@ -7,12 +7,16 @@ export default () => {
   const [weather, setWeather] = useState('');
 
   const callWeather = async () => {
-    const API_KEY = '23815d818a51ef76062d119292b5691e';
+    const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=kr&units=metric`;
-
-    const response = await fetch(url);
-    const data = await response.json();
-    setWeather(data);
+    console.log(url);
+    try {
+      const response = await axios.get(url);
+      console.log(response);
+      setWeather(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
