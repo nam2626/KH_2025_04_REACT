@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header';
+import BoardPage from './pages/BoardPage';
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         {/* /about 경로 */}
         <Route path="/about" element={<AboutPage />} />
+        {/* /board 경로 */}
+        <Route path="/board" element={<BoardPage />} />
+
         {/* 없는 경로 접근시 NotFoundPage 렌더링 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -10,6 +10,9 @@ export default () => {
         <li>
           <Link to="/about">소개</Link>
         </li>
+        <li>
+          <Link to="/board">게시판</Link>
+        </li>
       </ul>
     </nav>
   );
