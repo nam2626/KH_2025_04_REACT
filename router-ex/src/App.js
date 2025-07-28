@@ -5,9 +5,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import NotFoundPage from './pages/NotFoundPage';
+import Header from './components/Header';
 function App() {
   return (
     <BrowserRouter>
+      <Header />
+      <hr />
       <Routes>
         {/* 기본 경로 : / */}
         <Route path="/" element={<HomePage />} />
