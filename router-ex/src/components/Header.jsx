@@ -16,6 +16,9 @@ export default () => {
         <li>
           <Link to="/post/5">포스트</Link>
         </li>
+        <li>
+          <Link to="/products?sort=price_desc&category=electronic">제품 목록</Link>
+        </li>
       </ul>
     </nav>
   );

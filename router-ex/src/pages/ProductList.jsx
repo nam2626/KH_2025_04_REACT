@@ -22,8 +22,8 @@ export default () => {
     <>
       <h2>상품 목록</h2>
       {category && <p>선택된 카테고리 : {category}</p>}
-      {sort & <p>정렬기준 : {sort}</p>}
-      {search & <p>검색어 : {search}</p>}
+      {sort && <p>정렬기준 : {sort}</p>}
+      {search && <p>검색어 : {search}</p>}
     </>
   );
 };

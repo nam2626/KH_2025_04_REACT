@@ -10,6 +10,7 @@ import BoardPage from './pages/BoardPage';
 import TeamPage from './pages/TeamPage';
 import CompanyPage from './pages/CompanyPage';
 import PostDetailPage from './pages/PostDetailPage';
+import ProductList from './pages/ProductList';
 function App() {
   return (
     <BrowserRouter>
@@ -28,7 +29,8 @@ function App() {
         <Route path="/board" element={<BoardPage />} />
         {/* PathVariable 보내는 방법 */}
         <Route path="/post/:id" element={<PostDetailPage />} />
-
+        {/* 쿼리 스트링 사용 */}
+        <Route path="/products" element={<ProductList />} />
         {/* 없는 경로 접근시 NotFoundPage 렌더링 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
