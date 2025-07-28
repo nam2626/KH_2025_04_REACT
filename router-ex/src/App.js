@@ -7,6 +7,8 @@ import AboutPage from './pages/AboutPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Header from './components/Header';
 import BoardPage from './pages/BoardPage';
+import TeamPage from './pages/TeamPage';
+import CompanyPage from './pages/CompanyPage';
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +18,10 @@ function App() {
         {/* 기본 경로 : / */}
         <Route path="/" element={<HomePage />} />
         {/* /about 경로 */}
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/about" element={<AboutPage />}>
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/company" element={<CompanyPage />} />
+        </Route>
         {/* /board 경로 */}
         <Route path="/board" element={<BoardPage />} />
 
