@@ -19,8 +19,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         {/* /about 경로 */}
         <Route path="/about" element={<AboutPage />}>
-          <Route path="/team" element={<TeamPage />} />
-          <Route path="/company" element={<CompanyPage />} />
+          {/* 중첩된 라우트에서는 / 를 안붙임, 자동으로 /about/team 조립됨 */}
+          <Route path="team" element={<TeamPage />} />
+          <Route path="company" element={<CompanyPage />} />
         </Route>
         {/* /board 경로 */}
         <Route path="/board" element={<BoardPage />} />
