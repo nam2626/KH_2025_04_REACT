@@ -9,6 +9,7 @@ import Header from './components/Header';
 import BoardPage from './pages/BoardPage';
 import TeamPage from './pages/TeamPage';
 import CompanyPage from './pages/CompanyPage';
+import PostDetailPage from './pages/PostDetailPage';
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,8 @@ function App() {
         </Route>
         {/* /board 경로 */}
         <Route path="/board" element={<BoardPage />} />
+        {/* PathVariable 보내는 방법 */}
+        <Route path="/post/:id" element={<PostDetailPage />} />
 
         {/* 없는 경로 접근시 NotFoundPage 렌더링 */}
         <Route path="*" element={<NotFoundPage />} />

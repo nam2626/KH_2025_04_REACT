@@ -13,6 +13,9 @@ export default () => {
         <li>
           <Link to="/board">게시판</Link>
         </li>
+        <li>
+          <Link to="/post/5">포스트</Link>
+        </li>
       </ul>
     </nav>
   );
