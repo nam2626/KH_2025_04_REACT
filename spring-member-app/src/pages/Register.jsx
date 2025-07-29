@@ -58,7 +58,7 @@ export default () => {
   };
 
   const idCheck = async () => {
-    const response = await axios.get(`/member/${txtId.current.value}`);
+    const response = await axios.get(`http://localhost:9999/member/${txtId.current.value}`);
     //true - 아이디 중복, false - 아이디 중복되지 않음
     if (response.data.result) {
       alert('아이디가 중복되었습니다.');
