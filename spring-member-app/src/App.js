@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Register from './pages/Register';
+import Update from './pages/Update';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/update/:id" element={<Update />} />
         </Routes>
       </BrowserRouter>
     </div>
