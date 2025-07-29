@@ -33,6 +33,8 @@ export default () => {
       alert('모든 항목에 정보를 입력하셔야 합니다.');
       return;
     }
+    //아이디 유효성 검사
+    if (!idCheck()) return;
     //암호 유효성 검사 체크
     if (!passCheck()) return;
     //axios 이용해서 서버로 등록할 회원 정보 전달
@@ -54,12 +56,24 @@ export default () => {
       console.log(error);
     }
   };
+
+  const idCheck = async () => {
+    const response = await axios.get(`/member/${txtId.current.value}`);
+    //true - 아이디 중복, false - 아이디 중복되지 않음
+    if (response.data.result) {
+      alert('아이디가 중복되었습니다.');
+      return false;
+    }
+    alert('해당 아이디는 사용하실수 있습니다.');
+    return true;
+  };
   return (
     <div>
       <h2>회원 등록</h2>
       <ul>
         <li>
           <input type="text" ref={txtId} placeholder="아이디를 입력하세요" />
+          <button onClick={idCheck}>아이디 중복 체크</button>
         </li>
         <li>
           <input type="text" onChange={passCheck} ref={txtPasswd} placeholder="암호를 입력하세요" />
