@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 export default () => {
@@ -25,6 +26,34 @@ export default () => {
     }
     return false;
   };
+
+  const register = async () => {
+    //모든 항목이 입력 되었는지 체크
+    if (!txtId.current.value || !txtName.current.value || !txtNickName.current.value) {
+      alert('모든 항목에 정보를 입력하셔야 합니다.');
+      return;
+    }
+    //암호 유효성 검사 체크
+    if (!passCheck()) return;
+    //axios 이용해서 서버로 등록할 회원 정보 전달
+    try {
+      const response = await axios.post('http://localhost:9999/member/register', {
+        id: txtId.current.value,
+        passwd: txtPasswd.current.value,
+        userName: txtName.current.value,
+        nickName: txtNickName.current.value,
+      });
+      //결과 출력
+      if (response.data.result) {
+        alert('회원정보 등록 성공');
+        navigate('/home');
+      } else {
+        alert('회원정보 등록 실패, 입력한 데이터를 확인하세요.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <h2>회원 등록</h2>
@@ -46,7 +75,7 @@ export default () => {
           <input type="text" ref={txtNickName} placeholder="닉네임을 입력하세요" />
         </li>
         <li>
-          <button>회원가입</button>
+          <button onClick={register}>회원가입</button>
           <button onClick={() => navigate(-1)}>취소</button>
         </li>
       </ul>
