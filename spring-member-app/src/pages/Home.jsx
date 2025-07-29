@@ -16,6 +16,17 @@ export default () => {
         console.log(error);
       });
   }, []);
+  const reloadData = () => {
+    axios
+      .get('http://localhost:9999/member/list')
+      .then((res) => {
+        console.log(res.data);
+        setMemberList(res.data.memberList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="home-container">
       <h2>회원 리스트</h2>
@@ -28,7 +39,7 @@ export default () => {
             <th>비고</th>
           </tr>
         </thead>
-        <tbody>{memberList && memberList.map((item) => <MemberItem key={item.id} member={item} />)}</tbody>
+        <tbody>{memberList && memberList.map((item) => <MemberItem key={item.id} member={item} reloadData={reloadData} />)}</tbody>
       </table>
     </div>
   );
