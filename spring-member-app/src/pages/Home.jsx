@@ -29,7 +29,22 @@ export default () => {
         console.log(error);
       });
   };
-  const searchMember = () => {};
+  const searchMember = () => {
+    const data = {
+      kind: kindRef.current.value,
+      search: searchRef.current.value,
+    };
+
+    axios
+      .get('http://localhost:9999/member/search', { params: data })
+      .then((res) => {
+        console.log(res.data);
+        setMemberList(res.data.memberList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="home-container">
       <h2>회원 리스트</h2>
