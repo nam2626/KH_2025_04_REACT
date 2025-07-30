@@ -34,7 +34,10 @@ export const businessCardsSlice = createSlice({
   name: 'businessCards',
   initialState,
   reducers: {
-    addCard: (state, action) => {},
+    addCard: (state, action) => {
+      console.log(action.payload);
+      state.cards = [...state.cards, { ...action.payload, id: Date.now() }];
+    },
     deleteCard: (state, action) => {},
     updateCard: (state, action) => {},
   },
