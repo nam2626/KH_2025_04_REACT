@@ -1,5 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-//빈 저장소 만들기
+import counterReducer from './counterSlice';
+
+// 저장소에 작성한 slice 등록
 export default configureStore({
-  reducer: {},
+  reducer: {
+    counter: counterReducer,
+  },
 });
