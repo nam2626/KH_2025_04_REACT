@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCard, deleteCard } from '../store/businessCardsSlice';
+import { addCard, deleteCard, updateCard } from '../store/businessCardsSlice';
 export default () => {
   //redux store에서 명함 데이터 읽어옴
   const cards = useSelector((state) => state.businessCards.cards);
@@ -103,7 +103,18 @@ export default () => {
                     />
                   );
                 })}
-                <button>수정완료</button>
+                <button
+                  onClick={() => {
+                    if (window.confirm('명함 정보를 수정하기겠습니까?')) {
+                      dispath(updateCard({ id: editCardId, updateData: editCardData }));
+                      setEditCardId(null);
+                      setEditCardData({});
+                      alert('명함 정보 수정 완료');
+                    }
+                  }}
+                >
+                  수정완료
+                </button>
                 <button
                   onClick={() => {
                     setEditCardData({});
