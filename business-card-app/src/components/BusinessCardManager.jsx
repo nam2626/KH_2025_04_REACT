@@ -38,6 +38,10 @@ export default () => {
     });
   };
 
+  //수정 모드 상태값(명함 ID를 가지고 처리)
+  const [editCardId, setEditCardId] = useState(null);
+  const [editCardData, setEditCardData] = useState({});
+
   return (
     <div>
       <h1>명함 관리 앱</h1>
@@ -69,26 +73,77 @@ export default () => {
         <h2>명함 목록({cards.length}개)</h2>
         {cards.map((card) => (
           <div key={card.id}>
-            <h3>
-              {card.name}
-              <span>({card.position})</span>
-            </h3>
-            <p>
-              <b>회사 : </b> {card.company}
-            </p>
-            <p>
-              <b>주소 : </b> {card.address}
-            </p>
-            <p>
-              <b>연락처 : </b> {card.phone}
-            </p>
-            <p>
-              <b>이메일 : </b> {card.email}
-            </p>
-            <p>
-              <button>수정</button>
-              <button onClick={() => dispath(deleteCard(card.id))}>삭제</button>
-            </p>
+            {editCardId === card.id ? (
+              <div>
+                {Object.keys(newData).map((key) => {
+                  return (
+                    <input
+                      key={key}
+                      type={key === 'email' ? 'email' : 'text'}
+                      id={key}
+                      placeholder={
+                        key === 'name'
+                          ? '이름'
+                          : key === 'position'
+                          ? '직급'
+                          : key === 'company'
+                          ? '회사명'
+                          : key === 'address'
+                          ? '회사 주소'
+                          : key === 'phone'
+                          ? '연락처'
+                          : key === 'email'
+                          ? '이메일'
+                          : ''
+                      }
+                      value={editCardData[key]}
+                      onChange={(e) => {
+                        setEditCardData({ editCardData, [key]: e.target.value });
+                      }}
+                    />
+                  );
+                })}
+                <button>수정완료</button>
+                <button
+                  onClick={() => {
+                    setEditCardData({});
+                    setEditCardId(null);
+                  }}
+                >
+                  수정취소
+                </button>
+              </div>
+            ) : (
+              <div>
+                <h3>
+                  {card.name}
+                  <span>({card.position})</span>
+                </h3>
+                <p>
+                  <b>회사 : </b> {card.company}
+                </p>
+                <p>
+                  <b>주소 : </b> {card.address}
+                </p>
+                <p>
+                  <b>연락처 : </b> {card.phone}
+                </p>
+                <p>
+                  <b>이메일 : </b> {card.email}
+                </p>
+                <p>
+                  <button
+                    onClick={() => {
+                      setEditCardId(card.id);
+                      setEditCardData({ ...card });
+                    }}
+                  >
+                    수정
+                  </button>
+                  <button onClick={() => dispath(deleteCard(card.id))}>삭제</button>
+                </p>
+              </div>
+            )}
           </div>
         ))}
       </div>
