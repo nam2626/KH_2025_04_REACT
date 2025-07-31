@@ -20,11 +20,22 @@ export default () => {
   const deleteTodo = (id) => {
     setTodoList(todoList.filter((item) => item.id !== id));
   };
+
+  const updateTodo = (id) => {
+    setTodoList(
+      todoList.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, done: !todo.done };
+        }
+        return todo;
+      }),
+    );
+  };
   return (
     <div>
       <h2>Todo List</h2>
       <TodoForm addTodo={addTodo} />
-      <TodoList todoList={todoList} deleteTodo={deleteTodo} />
+      <TodoList todoList={todoList} deleteTodo={deleteTodo} updateTodo={updateTodo} />
     </div>
   );
 };
