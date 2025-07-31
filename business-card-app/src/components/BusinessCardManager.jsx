@@ -98,7 +98,7 @@ export default () => {
                       }
                       value={editCardData[key]}
                       onChange={(e) => {
-                        setEditCardData({ editCardData, [key]: e.target.value });
+                        setEditCardData({ ...editCardData, [key]: e.target.value });
                       }}
                     />
                   );

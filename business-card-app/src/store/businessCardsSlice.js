@@ -42,7 +42,21 @@ export const businessCardsSlice = createSlice({
     deleteCard: (state, action) => {
       state.cards = state.cards.filter((card) => card.id !== action.payload);
     },
-    updateCard: (state, action) => {},
+    updateCard: (state, action) => {
+      const { id, updateData } = action.payload;
+      //해당 아이디값 찾아서 수정할 값으로 변경
+      // const item = state.cards.find((card) => card.id === id);
+      // item.name = updateData.name;
+      // item.company = updateData.company;
+      // item.address = updateData.address;
+      // item.phone = updateData.phone;
+      // item.email = updateData.email;
+      // item.position = updateData.position;
+
+      // state.cards = [...state.cards.filter((card) => card.id !== id), { ...updateData }];
+      const item = state.cards.find((card) => card.id === id);
+      Object.assign(item, updateData);
+    },
   },
 });
 
