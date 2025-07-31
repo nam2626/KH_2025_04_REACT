@@ -1,3 +1,5 @@
+import TodoListItem from './TodoListItem';
+
 export default ({ todoList }) => {
   return (
     <div>
