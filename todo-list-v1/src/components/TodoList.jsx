@@ -1,6 +1,6 @@
 import TodoListItem from './TodoListItem';
 
-export default ({ todoList }) => {
+export default ({ todoList, deleteTodo }) => {
   return (
     <div>
       <table className="table table-hover table-striped">
@@ -14,7 +14,7 @@ export default ({ todoList }) => {
         </thead>
         <tbody>
           {todoList.map((todo) => {
-            return <TodoListItem key={todo.id} todo={todo} />;
+            return <TodoListItem key={todo.id} todo={todo} deleteTodo={deleteTodo} />;
           })}
         </tbody>
       </table>

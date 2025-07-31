@@ -16,11 +16,15 @@ export default () => {
   const addTodo = (txt) => {
     setTodoList([...todoList, { id: ++num.current, text: txt, done: false }]);
   };
+
+  const deleteTodo = (id) => {
+    setTodoList(todoList.filter((item) => item.id !== id));
+  };
   return (
     <div>
       <h2>Todo List</h2>
       <TodoForm addTodo={addTodo} />
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} deleteTodo={deleteTodo} />
     </div>
   );
 };

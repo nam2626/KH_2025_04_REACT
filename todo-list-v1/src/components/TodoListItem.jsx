@@ -1,4 +1,4 @@
-export default ({ todo }) => {
+export default ({ todo, deleteTodo }) => {
   return (
     <tr>
       <td style={{ width: '10%' }}>{todo.id}</td>
@@ -7,7 +7,9 @@ export default ({ todo }) => {
         <button className="btn btn-primary">Complete</button>
       </td>
       <td style={{ width: '10%' }}>
-        <button className="btn btn-danger">Delete</button>
+        <button className="btn btn-danger" onClick={() => deleteTodo(todo.id)}>
+          Delete
+        </button>
       </td>
     </tr>
   );
