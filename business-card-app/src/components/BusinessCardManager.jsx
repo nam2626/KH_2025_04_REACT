@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCard } from '../store/businessCardsSlice';
+import { addCard, deleteCard } from '../store/businessCardsSlice';
 export default () => {
   //redux store에서 명함 데이터 읽어옴
   const cards = useSelector((state) => state.businessCards.cards);
@@ -87,7 +87,7 @@ export default () => {
             </p>
             <p>
               <button>수정</button>
-              <button>삭제</button>
+              <button onClick={() => dispath(deleteCard(card.id))}>삭제</button>
             </p>
           </div>
         ))}
