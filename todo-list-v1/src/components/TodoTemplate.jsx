@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TodoForm from './TodoForm';
 
 const list = [
   { id: 1, text: '1번째 할일', done: false },
@@ -13,6 +14,7 @@ export default () => {
   return (
     <div>
       <h2>Todo List</h2>
+      <TodoForm />
     </div>
   );
 };
