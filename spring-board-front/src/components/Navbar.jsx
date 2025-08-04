@@ -1,5 +1,8 @@
 //src/components/NavBar.jsx
+
 import { Link } from 'react-router-dom';
+import '../css/NavBar.css';
+
 export default () => {
   return (
     <nav>
