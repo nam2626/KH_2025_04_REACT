@@ -1,5 +1,6 @@
 //src/service/authApi.js
 import axios from 'axios';
+import { getAccessToken } from '../utils/authUtil';
 
 //백엔드 서버 주소
 const API_BASE_URL = 'http://localhost:9999/api';
