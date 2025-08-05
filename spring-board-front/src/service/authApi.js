@@ -1,6 +1,6 @@
 //src/service/authApi.js
 import axios from 'axios';
-import { getAccessToken, setAccessToken, setUserData } from '../utils/authUtil';
+import { clearToken, getAccessToken, setAccessToken, setUserData } from '../utils/authUtil';
 
 //백엔드 서버 주소
 const API_BASE_URL = 'http://localhost:9999/api';
@@ -57,4 +57,10 @@ export const getUserData = async () => {
   const response = await authApi.get('/auth/user-data');
   setUserData(JSON.stringify(response.data));
   return response.data;
+};
+
+//로그아웃 함수
+export const apiLogout = async () => {
+  const response = await authApi.post('/auth/logout');
+  clearToken();
 };
