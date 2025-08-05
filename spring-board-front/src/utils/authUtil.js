@@ -16,3 +16,12 @@ export const clearToken = () => {
 export const setUserData = (user) => {
   localStorage.setItem('userData', user);
 };
+
+export const getUserData = () => {
+  return JSON.parse(localStorage.getItem('userData'));
+};
+
+//유효성 검사
+export const isAuthenticated = () => {
+  return !!getAccessToken();
+};
