@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { getUserData, login } from '../service/authApi';
+import { useNavigate } from 'react-router-dom';
 
 export default () => {
+  const navigate = useNavigate();
   /* 로그인할 아이디 비번 저장 */
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
@@ -11,7 +14,10 @@ export default () => {
       console.log(resonse);
       alert('로그인 성공');
       //사용자 정보를 받아서 저장
+      const userData = await getUserData();
+      console.log(userData);
       //로그인 성공 후 홈으로 이동
+      navigate('/');
     } catch (error) {
       alert('로그인 실패');
       console.log('로그인 오류 : ', error);

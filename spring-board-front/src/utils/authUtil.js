@@ -12,3 +12,7 @@ export const setAccessToken = (token) => {
 export const clearToken = () => {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
 };
+
+export const setUserData = (user) => {
+  localStorage.setItem('userData', user);
+};
