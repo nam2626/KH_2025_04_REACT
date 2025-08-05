@@ -36,6 +36,7 @@ authApi.interceptors.response.use(
 );
 //회원 가입 호출 함수
 export const signup = async (userid, username, password) => {
+  console.log(userid, username, password);
   const response = await authApi.post('/auth/signup', {
     userid,
     username,
