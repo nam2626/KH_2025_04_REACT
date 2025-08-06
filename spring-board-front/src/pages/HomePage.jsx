@@ -27,8 +27,46 @@ export default () => {
     <div>
       <h2>홈</h2>
       {/* 게시글 목록 출력 */}
-
+      <table>
+        <thead>
+          <tr>
+            <td>글번호</td>
+            <td>제목</td>
+            <td>작성자</td>
+            <td>작성일</td>
+            <td>조회수</td>
+            <td>좋아요</td>
+            <td>싫어요</td>
+          </tr>
+        </thead>
+        <tbody>
+          {!boardList && (
+            <tr>
+              <td colSpan={7}>데이터 로딩 중입니다.</td>
+            </tr>
+          )}
+          {boardList &&
+            boardList.map((item) => (
+              <tr key={item.bno}>
+                <td>{item.bno}</td>
+                <td>{item.title}</td>
+                <td>{item.username}</td>
+                <td>{item.writeDate}</td>
+                <td>{item.bcount}</td>
+                <td>{item.blike}</td>
+                <td>{item.bhate}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
       {/* 페이징 정보 출력 */}
+      <tfoot>
+        <tr>
+          <td colSpan={7}>
+            <Pagination pagging={pagging} onPageChange={pageRequest} />
+          </td>
+        </tr>
+      </tfoot>
     </div>
   );
 };
