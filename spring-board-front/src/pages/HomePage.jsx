@@ -1,5 +1,6 @@
-import { use, useEffect, useState } from 'react';
+import { use, useCallback, useEffect, useState } from 'react';
 import { getBoardData } from '../service/authApi';
+import Pagination from '../components/Pagination';
 
 export default () => {
   /* 
@@ -8,19 +9,18 @@ export default () => {
   const [error, setError] = useState('');
   const [boardList, setBoardList] = useState([]);
   const [pagging, setPagging] = useState({});
-
+  const fetchBoardData = useCallback(async (pageNo = 1, pageContentEa = 30) => {
+    try {
+      const data = await getBoardData();
+      setBoardList(data.boardList);
+      setPagging(data.pagging);
+      console.log(data);
+    } catch (error) {
+      setError('게시글 데이터를 불러오는데 실패하였습니다.');
+      console.log(error);
+    }
+  }, []);
   useEffect(() => {
-    const fetchBoardData = async () => {
-      try {
-        const data = await getBoardData();
-        setBoardList(data.boardList);
-        setPagging(data.pagging);
-        console.log(data);
-      } catch (error) {
-        setError('게시글 데이터를 불러오는데 실패하였습니다.');
-        console.log(error);
-      }
-    };
     fetchBoardData();
   }, []);
   return (
@@ -63,7 +63,7 @@ export default () => {
       <tfoot>
         <tr>
           <td colSpan={7}>
-            <Pagination pagging={pagging} onPageChange={pageRequest} />
+            <Pagination pagging={pagging} onPageChange={fetchBoardData} />
           </td>
         </tr>
       </tfoot>
