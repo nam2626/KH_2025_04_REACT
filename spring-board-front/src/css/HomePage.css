@@ -1,0 +1,81 @@
+/* Home.css 파일 또는 인라인 스타일 */
+
+/* 게시글 목록 컨테이너 스타일 */
+.board-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* 테이블 전체 스타일 */
+.board-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* 테이블 헤더 스타일 */
+.board-container thead tr {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.board-container th,
+.board-container td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.board-container th {
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 테이블 본문 스타일 */
+.board-container tbody tr:nth-child(even) {
+    background-color: #f9fbfd;
+}
+
+.board-container tbody tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.board-container td {
+    color: #495057;
+    font-size: 14px;
+}
+
+/* 로딩 중 메시지 스타일 */
+.board-container tbody tr td[colspan="7"] {
+    text-align: center;
+    padding: 50px;
+    color: #888;
+    font-style: italic;
+}
+
+/* 페이징 컨테이너 스타일 */
+.board-container tfoot tr {
+    background-color: transparent;
+}
+
+.board-container tfoot td {
+    text-align: center;
+    padding-top: 20px;
+    border-bottom: none;
+}

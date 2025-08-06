@@ -2,6 +2,8 @@ import { use, useCallback, useEffect, useState } from 'react';
 import { getBoardData } from '../service/authApi';
 import Pagination from '../components/Pagination';
 
+import '../css/HomePage.css';
+
 export default () => {
   /* 
     홈 컴포넌트 로드시 한번만 게시글 데이터를 조회
@@ -24,8 +26,8 @@ export default () => {
     fetchBoardData();
   }, []);
   return (
-    <div>
-      <h2>홈</h2>
+    <div className="board-container">
+      <h2>게시판</h2>
       {/* 게시글 목록 출력 */}
       <table>
         <thead>
@@ -58,15 +60,15 @@ export default () => {
               </tr>
             ))}
         </tbody>
+        {/* 페이징 정보 출력 */}
+        <tfoot>
+          <tr>
+            <td colSpan={7}>
+              <Pagination pagging={pagging} onPageChange={fetchBoardData} />
+            </td>
+          </tr>
+        </tfoot>
       </table>
-      {/* 페이징 정보 출력 */}
-      <tfoot>
-        <tr>
-          <td colSpan={7}>
-            <Pagination pagging={pagging} onPageChange={fetchBoardData} />
-          </td>
-        </tr>
-      </tfoot>
     </div>
   );
 };

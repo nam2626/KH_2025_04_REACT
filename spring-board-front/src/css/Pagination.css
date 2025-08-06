@@ -1,0 +1,43 @@
+/* Pagination.css 또는 인라인 스타일 */
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.pagination-container li {
+    margin: 0 4px;
+}
+
+.pagination-container button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.pagination-container button:hover:not([disabled]) {
+    background-color: #e9ecef;
+    border-color: #c5c5c5;
+}
+
+.pagination-container button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* 현재 페이지 버튼 스타일 */
+.pagination-container li button[disabled] {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    font-weight: bold;
+}
