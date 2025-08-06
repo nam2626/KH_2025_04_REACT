@@ -11,6 +11,12 @@ export default ({ pagging, onPageChange }) => {
 
   return (
     <ul className="pagination-container">
+      {/* 맨처음 페이지 번호 */}
+      <li>
+        <button onClick={() => onPageChange(1)} disabled={1 === currentPage}>
+          ◀◀
+        </button>
+      </li>
       {/* 이전 페이지 그룹 ◀ */}
       <li>
         <button onClick={() => onPageChange(startPageOfPageGroup - 1)} disabled={!priviousPageGroup}>
@@ -29,6 +35,12 @@ export default ({ pagging, onPageChange }) => {
       <li>
         <button onClick={() => onPageChange(endPageOfPageGroup + 1)} disabled={!nextPageGroup}>
           ▶
+        </button>
+      </li>
+      {/* 맨 마지막 페이지 번호 */}
+      <li>
+        <button onClick={() => onPageChange(totalPage)} disabled={totalPage === currentPage}>
+          ▶▶
         </button>
       </li>
     </ul>

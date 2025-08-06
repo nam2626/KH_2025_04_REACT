@@ -51,7 +51,9 @@ export default () => {
             boardList.map((item) => (
               <tr key={item.bno}>
                 <td>{item.bno}</td>
-                <td>{item.title}</td>
+                <td>
+                  <Link to={`/board/${item.bno}`}>{item.title}</Link>
+                </td>
                 <td>{item.username}</td>
                 <td>{item.writeDate}</td>
                 <td>{item.bcount}</td>

@@ -75,3 +75,9 @@ export const getBoardData = async (pageNo = 1, pageContentEa = 30) => {
   });
   return response.data;
 };
+
+//게시글 조회
+export const getBoardDetail = async (bno) => {
+  const response = await authApi.get(`/board/detail/${bno}`);
+  return response.data;
+};

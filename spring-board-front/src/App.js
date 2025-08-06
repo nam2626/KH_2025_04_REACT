@@ -4,6 +4,7 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
+import BoardView from './pages/BoardView';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/board/:bno" element={<BoardView />} />
           {/* 보호된 라우트 */}
 
           {/* 경로가 잘못된 경우 */}
