@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { signup } from '../service/authApi';
 import { useNavigate } from 'react-router-dom';
+import '../css/SignupPage.css';
 
 export default () => {
   const userid = useRef(null);
@@ -20,7 +21,7 @@ export default () => {
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <h2>회원가입</h2>
       <input type="text" ref={userid} placeholder="아이디 입력하세요" />
       <br />

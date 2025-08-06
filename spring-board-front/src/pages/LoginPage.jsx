@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { getUserData, login } from '../service/authApi';
 import { useNavigate } from 'react-router-dom';
-
+import '../css/LoginPage.css';
 export default () => {
   const navigate = useNavigate();
   /* 로그인할 아이디 비번 저장 */
@@ -24,7 +24,7 @@ export default () => {
     }
   };
   return (
-    <div>
+    <div className="login-container">
       <h2>로그인</h2>
       {/* 로그인 폼 */}
       <input type="text" placeholder="아이디" onChange={(e) => setUserid(e.target.value)} />

@@ -1,0 +1,83 @@
+/* SignUp.css 또는 인라인 스타일 */
+
+/* * SignUp 컴포넌트를 감싸는 컨테이너 스타일
+ * Flexbox를 사용하여 내부 요소를 가운데로 정렬합니다.
+ */
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* 가운데 정렬을 위한 기본 패딩 */
+    padding: 20px;
+    /* 배경과 그림자 효과로 시각적 분리 */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    /* 가운데 정렬 및 상하 여백 */
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.signup-container input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.signup-container input:focus {
+    outline: none;
+    border-color: #28a745;
+    /* 가입 버튼과 어울리는 초록색 */
+}
+
+.signup-container button {
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
+    /* 회원가입을 상징하는 초록색 */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-container button:hover {
+    background-color: #218838;
+}
+
+.signup-container p {
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+
+.signup-container a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-container a:hover {
+    text-decoration: underline;
+}
