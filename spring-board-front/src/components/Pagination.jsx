@@ -6,15 +6,30 @@ export default ({ pagging, onPageChange }) => {
 
   //표시할 페이지 번호 배열 생성
   const pageNumbers = [];
-  for (i = startPageOfPageGroup; i <= endPageOfPageGroup; i++) pageNumbers.push(i);
+  for (let i = startPageOfPageGroup; i <= endPageOfPageGroup; i++) pageNumbers.push(i);
 
   return (
-    <>
+    <ul>
       {/* 이전 페이지 그룹 ◀ */}
-
+      <li>
+        <button onClick={() => onPageChange(startPageOfPageGroup - 1)} disabled={!priviousPageGroup}>
+          ◀
+        </button>
+      </li>
       {/* 페이지 번호 */}
-
+      {pageNumbers.map((num) => (
+        <li key={num}>
+          <button onClick={() => onPageChange(num)} disabled={num === currentPage}>
+            {num}
+          </button>
+        </li>
+      ))}
       {/* 다음 페이지 그룹 ▶ */}
-    </>
+      <li>
+        <button onClick={() => onPageChange(endPageOfPageGroup + 1)} disabled={!nextPageGroup + 1}>
+          ▶
+        </button>
+      </li>
+    </ul>
   );
 };
