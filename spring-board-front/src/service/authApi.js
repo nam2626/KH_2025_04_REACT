@@ -64,3 +64,14 @@ export const apiLogout = async () => {
   const response = await authApi.post('/auth/logout');
   clearToken();
 };
+
+//게시글 목록 조회
+export const getBoardData = async (pageNo = 1, pageContentEa = 30) => {
+  const response = await authApi.get('/board/list', {
+    params: {
+      pageNo,
+      pageContentEa,
+    },
+  });
+  return response.data;
+};
