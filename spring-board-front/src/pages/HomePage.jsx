@@ -13,7 +13,7 @@ export default () => {
   const [pagging, setPagging] = useState({});
   const fetchBoardData = useCallback(async (pageNo = 1, pageContentEa = 30) => {
     try {
-      const data = await getBoardData();
+      const data = await getBoardData(pageNo, pageContentEa);
       setBoardList(data.boardList);
       setPagging(data.pagging);
       console.log(data);

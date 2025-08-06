@@ -27,7 +27,7 @@ export default ({ pagging, onPageChange }) => {
       ))}
       {/* 다음 페이지 그룹 ▶ */}
       <li>
-        <button onClick={() => onPageChange(endPageOfPageGroup + 1)} disabled={!nextPageGroup + 1}>
+        <button onClick={() => onPageChange(endPageOfPageGroup + 1)} disabled={!nextPageGroup}>
           ▶
         </button>
       </li>
