@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { boardCommentHate, boardCommentLike, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
+import { boardCommentHate, boardCommentLike, boardDelete, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
 export default () => {
@@ -71,7 +71,15 @@ export default () => {
       console.log(error);
     }
   };
-
+  const handleBoardDelete = async (bno) => {
+    try {
+      const data = await boardDelete(bno);
+      alert(data.msg);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   if (!board) return <div>게시글 정보가 없습니다.</div>;
   return (
     <div>
@@ -93,7 +101,7 @@ export default () => {
           {/* 로그인한 사용자와 게시글 작성자와 같은지 확인 후 삭제 버튼, 수정버튼을 출력 */}
           {currentUser && currentUser.id === board.id && (
             <>
-              <button>삭제</button>
+              <button onClick={() => handleBoardDelete(bno)}>삭제</button>
               <button onClick={() => navigate(`/edit/${bno}`)}>수정</button>
             </>
           )}

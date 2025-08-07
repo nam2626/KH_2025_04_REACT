@@ -103,3 +103,8 @@ export const boardCommentHate = async (bno) => {
   const response = await authApi.get(`/board/comment/hate/${bno}`);
   return response.data;
 };
+//게시글 삭제
+export const boardDelete = async (bno) => {
+  const response = await authApi.delete(`/board/${bno}`);
+  return response.data;
+};
