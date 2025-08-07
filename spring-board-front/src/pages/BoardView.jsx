@@ -67,6 +67,16 @@ export default () => {
           </div>
         ))}
       </div>
+      {/* 로그인한 사용자만 댓글 작성하는 폼 */}
+      {isAuthenticated() ? (
+        <div>
+          <h3>댓글 작성</h3>
+          <textarea placeholder="댓글을 입력하세요...."></textarea>
+          <button>댓글 작성</button>
+        </div>
+      ) : (
+        <p>로그인 후 댓글을 작성할 수 있습니다.</p>
+      )}
       {/* 댓글 출력 */}
       <div>
         {commentList.map((item) => (
@@ -79,6 +89,7 @@ export default () => {
             <div>
               <button>👍{item.clike}</button>
               <button>👎{item.chate}</button>
+              {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
             </div>
           </div>
         ))}
