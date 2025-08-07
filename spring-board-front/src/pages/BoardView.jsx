@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getBoardDetail } from '../service/authApi';
+import { getBoardDetail, getUserData } from '../service/authApi';
+import { isAuthenticated } from '../utils/authUtil';
 
 export default () => {
   const { bno } = useParams();
@@ -8,6 +9,7 @@ export default () => {
   const [board, setBoard] = useState({});
   const [fileList, setFileList] = useState([]);
   const [commentList, setCommentList] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
   //게시글 API 호출하는 코드 작성
   useEffect(() => {
     const fetchBoardData = async () => {
@@ -17,6 +19,14 @@ export default () => {
       setBoard(data.board);
       setFileList(data.fileList);
       setCommentList(data.commentList);
+
+      // 로그인 상태일때만 사용자 정보를 읽어오기
+      if (isAuthenticated()) {
+        const user = await getUserData(); //서버에 다시 요청
+        setCurrentUser(user);
+        console.log(user);
+      }
+
       console.log(data);
     };
 
