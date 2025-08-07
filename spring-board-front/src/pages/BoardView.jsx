@@ -90,6 +90,12 @@ export default () => {
               <button>👍{item.clike}</button>
               <button>👎{item.chate}</button>
               {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
+              {currentUser && currentUser.id === item.id && (
+                <>
+                  <button>삭제</button>
+                  <button>수정</button>
+                </>
+              )}
             </div>
           </div>
         ))}
