@@ -92,3 +92,14 @@ export const boardHate = async (bno) => {
   const response = await authApi.get(`/board/hate/${bno}`);
   return response.data;
 };
+
+//댓글 좋아요
+export const boardCommentLike = async (bno) => {
+  const response = await authApi.get(`/board/comment/like/${bno}`);
+  return response.data;
+};
+//댓글 싫어요
+export const boardCommentHate = async (bno) => {
+  const response = await authApi.get(`/board/comment/hate/${bno}`);
+  return response.data;
+};

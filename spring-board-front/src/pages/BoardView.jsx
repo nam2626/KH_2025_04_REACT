@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
+import { boardCommentHate, boardCommentLike, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
 export default () => {
@@ -43,6 +43,30 @@ export default () => {
       const response = await action(bno);
       alert(response.msg);
       setBoard({ ...board, blike: response.count.BLIKE, bhate: response.count.BHATE });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // 댓글 좋아요 싫어요 처리
+  const handleBoardCommentLikeHate = async (action, cno) => {
+    if (!isAuthenticated()) {
+      alert('로그인 하셔야 이용하실 수 있습니다.');
+      return;
+    }
+
+    try {
+      const response = await action(cno);
+      alert(response.msg);
+      //결과값 가지고 변경
+      setCommentList(
+        commentList.map((comment) => {
+          if (cno === comment.cno) {
+            return { ...comment, clike: response.count.CLIKE, chate: response.count.CHATE };
+          }
+          return comment;
+        }),
+      );
     } catch (error) {
       console.log(error);
     }
@@ -103,8 +127,8 @@ export default () => {
             </div>
             <p>{item.content}</p>
             <div>
-              <button>👍{item.clike}</button>
-              <button>👎{item.chate}</button>
+              <button onClick={() => handleBoardCommentLikeHate(boardCommentLike, item.cno)}>👍{item.clike}</button>
+              <button onClick={() => handleBoardCommentLikeHate(boardCommentHate, item.cno)}>👎{item.chate}</button>
               {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
               {currentUser && currentUser.id === item.id && (
                 <>
