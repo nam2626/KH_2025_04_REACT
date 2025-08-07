@@ -17,4 +17,5 @@ export default () => {
 
     fetchBoardData();
   }, [bno]); //bno 변경시 실행
+  return <></>;
 };

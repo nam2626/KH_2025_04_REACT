@@ -3,6 +3,7 @@ import { getBoardData } from '../service/authApi';
 import Pagination from '../components/Pagination';
 
 import '../css/HomePage.css';
+import { Link } from 'react-router-dom';
 
 export default () => {
   /* 
