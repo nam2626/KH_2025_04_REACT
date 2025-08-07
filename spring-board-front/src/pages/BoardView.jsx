@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getBoardDetail, getUserData } from '../service/authApi';
+import { boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
 export default () => {
@@ -32,6 +32,22 @@ export default () => {
 
     fetchBoardData();
   }, [bno]); //bno 변경시 실행
+
+  const handleBoardLikeHate = async (action, bno) => {
+    if (!isAuthenticated()) {
+      alert('로그인 하셔야 이용하실 수 있습니다.');
+      return;
+    }
+
+    try {
+      const response = await action(bno);
+      alert(response.msg);
+      setBoard({ ...board, blike: response.count.BLIKE, bhate: response.count.BHATE });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (!board) return <div>게시글 정보가 없습니다.</div>;
   return (
     <div>
@@ -46,8 +62,8 @@ export default () => {
         <hr />
         <div dangerouslySetInnerHTML={{ __html: board.content }}></div>
         <div>
-          <button>👍좋아요 {board.blike}</button>
-          <button>👎싫어요 {board.bhate}</button>
+          <button onClick={() => handleBoardLikeHate(boardLike, bno)}>👍좋아요 {board.blike}</button>
+          <button onClick={() => handleBoardLikeHate(boardHate, bno)}>👎싫어요 {board.bhate}</button>
         </div>
         <div>
           {/* 로그인한 사용자와 게시글 작성자와 같은지 확인 후 삭제 버튼, 수정버튼을 출력 */}

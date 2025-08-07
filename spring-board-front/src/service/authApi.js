@@ -81,3 +81,14 @@ export const getBoardDetail = async (bno) => {
   const response = await authApi.get(`/board/detail/${bno}`);
   return response.data;
 };
+
+//게시글 좋아요
+export const boardLike = async (bno) => {
+  const response = await authApi.get(`/board/like/${bno}`);
+  return response.data;
+};
+//게시글 싫어요
+export const boardHate = async (bno) => {
+  const response = await authApi.get(`/board/hate/${bno}`);
+  return response.data;
+};
