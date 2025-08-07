@@ -49,6 +49,15 @@ export default () => {
           <button>👍좋아요 {board.blike}</button>
           <button>👎싫어요 {board.bhate}</button>
         </div>
+        <div>
+          {/* 로그인한 사용자와 게시글 작성자와 같은지 확인 후 삭제 버튼, 수정버튼을 출력 */}
+          {currentUser && currentUser.id === board.id && (
+            <>
+              <button>삭제</button>
+              <button onClick={() => navigate(`/edit/${bno}`)}>수정</button>
+            </>
+          )}
+        </div>
       </div>
       {/* 첨부 파일 목록 출력 */}
       <div>
