@@ -10,6 +10,10 @@ export default () => {
   const [fileList, setFileList] = useState([]);
   const [commentList, setCommentList] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  // 댓글 수정을 위한 수정모드 상태값
+  const [editingCommentCno, setEditingCommentCno] = useState(null);
+  const [editingCommentContent, setEditingCommentContent] = useState('');
+
   //게시글 API 호출하는 코드 작성
   useEffect(() => {
     const fetchBoardData = async () => {
@@ -96,6 +100,13 @@ export default () => {
       alert('댓글 삭제 실패');
     }
   };
+  // 댓글 수정하는 함수 작성.
+  const handleBoardCommentUpdate = async (cno) => {
+    //댓글 내용이 입력이 되었는지 체크.
+    //서버로 해당 내용 전송
+    //서버가 준 내용으로 교체 - 입력했던 내용으로 최신화
+    //수정할 때 사용했던 상태값 초기화
+  };
   if (!board) return <div>게시글 정보가 없습니다.</div>;
   return (
     <div>
@@ -143,26 +154,41 @@ export default () => {
       )}
       {/* 댓글 출력 */}
       <div>
-        {commentList.map((item) => (
-          <div>
+        {commentList.map((item) =>
+          item.cno === editingCommentCno ? (
             <div>
-              <strong>{item.username}</strong>
-              <span>{item.cdate}</span>
+              <textarea value={editingCommentContent} onChange={(e) => setEditingCommentContent(e.target.value)}></textarea>
+              <button>수정하기</button>
+              <button onClick={() => setEditingCommentCno(null)}>취소</button>
             </div>
-            <p>{item.content}</p>
+          ) : (
             <div>
-              <button onClick={() => handleBoardCommentLikeHate(boardCommentLike, item.cno)}>👍{item.clike}</button>
-              <button onClick={() => handleBoardCommentLikeHate(boardCommentHate, item.cno)}>👎{item.chate}</button>
-              {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
-              {currentUser && currentUser.id === item.id && (
-                <>
-                  <button onClick={() => handleCommentDelete(item.cno)}>삭제</button>
-                  <button>수정</button>
-                </>
-              )}
+              <div>
+                <strong>{item.username}</strong>
+                <span>{item.cdate}</span>
+              </div>
+              <p>{item.content}</p>
+              <div>
+                <button onClick={() => handleBoardCommentLikeHate(boardCommentLike, item.cno)}>👍{item.clike}</button>
+                <button onClick={() => handleBoardCommentLikeHate(boardCommentHate, item.cno)}>👎{item.chate}</button>
+                {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
+                {currentUser && currentUser.id === item.id && (
+                  <>
+                    <button onClick={() => handleCommentDelete(item.cno)}>삭제</button>
+                    <button
+                      onClick={() => {
+                        setEditingCommentCno(item.cno);
+                        setEditingCommentContent(item.content);
+                      }}
+                    >
+                      수정
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ),
+        )}
       </div>
     </div>
   );
