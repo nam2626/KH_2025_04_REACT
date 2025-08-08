@@ -180,7 +180,7 @@ export default () => {
           item.cno === editingCommentCno ? (
             <div>
               <textarea value={editingCommentContent} onChange={(e) => setEditingCommentContent(e.target.value)}></textarea>
-              <button>수정하기</button>
+              <button onClick={() => handleBoardCommentUpdate(item.cno)}>수정하기</button>
               <button onClick={() => setEditingCommentCno(null)}>취소</button>
             </div>
           ) : (

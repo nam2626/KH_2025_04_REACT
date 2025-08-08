@@ -114,10 +114,10 @@ export const boardCommentDelete = async (cno) => {
   return response.data;
 };
 //댓글 수정
-export const boardCommentUpdate = async (cno, comment) => {
+export const boardCommentUpdate = async (cno, content) => {
   const response = await authApi.patch('/board/comment', {
     cno,
-    comment,
+    content,
   });
   return response.data;
 };
