@@ -2,6 +2,7 @@
     min-width: 800px;
     max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: 200px;
 }
 
 .board_write_container > h2{
@@ -56,4 +57,8 @@ input[type="text"] {
     background-image: url(../../public/img/file.png);
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.file_drop_area.drag_over{
+    box-shadow: 0px 0px 10px 5px red;
 }
