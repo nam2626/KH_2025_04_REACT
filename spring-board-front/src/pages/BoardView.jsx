@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { boardCommentDelete, boardCommentHate, boardCommentLike, boardDelete, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
+import { boardCommentDelete, boardCommentHate, boardCommentLike, boardCommentUpdate, boardDelete, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
 export default () => {
@@ -110,7 +110,17 @@ export default () => {
     if (!isAuthenticated()) return alert('로그인 하셔야 이용하실 수 있습니다.');
     try {
       //서버로 해당 내용 전송
+      const data = await boardCommentUpdate(cno, editingCommentContent);
       //서버가 준 내용으로 교체 - 입력했던 내용으로 최신화
+      alert(data.msg);
+      setCommentList(
+        commentList.map((item) => {
+          if (item.cno === cno) {
+            return data.comment;
+          }
+          return item;
+        }),
+      );
     } catch (error) {
       console.log(error);
     }
