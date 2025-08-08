@@ -121,3 +121,12 @@ export const boardCommentUpdate = async (cno, content) => {
   });
   return response.data;
 };
+//게시판 글쓰기
+export const boardWrite = async (formData) => {
+  const response = await authApi.post('/board/write', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data;
+};
