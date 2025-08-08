@@ -103,9 +103,21 @@ export default () => {
   // 댓글 수정하는 함수 작성.
   const handleBoardCommentUpdate = async (cno) => {
     //댓글 내용이 입력이 되었는지 체크.
-    //서버로 해당 내용 전송
-    //서버가 준 내용으로 교체 - 입력했던 내용으로 최신화
+    if (editingCommentContent.trim() === 0) {
+      alert('수정할 내용을 입력해 주세요');
+      return;
+    }
+    if (!isAuthenticated()) return alert('로그인 하셔야 이용하실 수 있습니다.');
+    try {
+      //서버로 해당 내용 전송
+      //서버가 준 내용으로 교체 - 입력했던 내용으로 최신화
+    } catch (error) {
+      console.log(error);
+    }
+
     //수정할 때 사용했던 상태값 초기화
+    setEditingCommentCno(null);
+    setEditingCommentContent('');
   };
   if (!board) return <div>게시글 정보가 없습니다.</div>;
   return (
