@@ -156,7 +156,7 @@ export default () => {
               {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
               {currentUser && currentUser.id === item.id && (
                 <>
-                  <button onClick={() => boardCommentDelete(item.cno)}>삭제</button>
+                  <button onClick={() => handleCommentDelete(item.cno)}>삭제</button>
                   <button>수정</button>
                 </>
               )}
