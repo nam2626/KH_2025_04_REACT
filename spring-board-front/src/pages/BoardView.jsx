@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { boardCommentHate, boardCommentLike, boardDelete, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
+import { boardCommentDelete, boardCommentHate, boardCommentLike, boardDelete, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
 export default () => {
@@ -80,6 +80,22 @@ export default () => {
       console.log(error);
     }
   };
+  /* 댓글 삭제 */
+  const handleCommentDelete = async (cno) => {
+    if (!isAuthenticated()) {
+      alert('로그인하셔야 이용하실 수 있습니다.');
+      return;
+    }
+    if (!window.confirm('정말로 해당 댓글을 삭제하시겠습니까?')) return;
+    try {
+      const response = await boardCommentDelete(cno);
+      alert(response.msg);
+      setCommentList(commentList.filter((item) => cno !== item.cno));
+    } catch (error) {
+      console.log(error);
+      alert('댓글 삭제 실패');
+    }
+  };
   if (!board) return <div>게시글 정보가 없습니다.</div>;
   return (
     <div>
@@ -140,7 +156,7 @@ export default () => {
               {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
               {currentUser && currentUser.id === item.id && (
                 <>
-                  <button>삭제</button>
+                  <button onClick={() => boardCommentDelete(item.cno)}>삭제</button>
                   <button>수정</button>
                 </>
               )}

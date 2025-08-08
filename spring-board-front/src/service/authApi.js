@@ -108,3 +108,8 @@ export const boardDelete = async (bno) => {
   const response = await authApi.delete(`/board/${bno}`);
   return response.data;
 };
+//댓글 삭제
+export const boardCommentDelete = async (cno) => {
+  const response = await authApi.delete(`/board/comment/${cno}`);
+  return response.data;
+};
