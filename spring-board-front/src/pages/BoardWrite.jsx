@@ -4,6 +4,7 @@ import { isAuthenticated } from '../utils/authUtil';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import { boardWrite } from '../service/authApi';
 export default () => {
   const navigate = useNavigate();
   const editor = useRef(null);
@@ -28,7 +29,7 @@ export default () => {
   const handleBoardWrite = async () => {
     //제목, 내용
     const title = document.getElementById('title').value;
-    const content = editor.current.getInstance().getMarkdown();
+    const content = editor.current.getInstance().getHTML();
     //제목 내용을 JSON으로 변환하고, 파일 목록까지 폼 데이터로 전환
     const formData = new FormData();
     formData.append('params', JSON.stringify({ title, content }));
@@ -38,6 +39,14 @@ export default () => {
     formData.forEach((val, key) => {
       console.log(key, val);
     });
+    try {
+      const res = await boardWrite(formData);
+      alert(res.msg);
+      navigate(`/board/${res.bno}`);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -77,6 +86,7 @@ export default () => {
           console.log('onDragLeave');
         }}
       ></div>
+      {fileList && fileList.map((item) => <p key={item.name}>{item.name}</p>)}
     </div>
   );
 };

@@ -160,7 +160,7 @@ export default () => {
       <div>
         {fileList.map((item) => (
           <div key={item.fno}>
-            <a href={`http://localhost:9999/api/board/download/${item.fno}`}>{item.fpath}</a>
+            <a href={`http://localhost:9999/api/board/download/${item.fno}`}>{item.fileName}</a>
           </div>
         ))}
       </div>
