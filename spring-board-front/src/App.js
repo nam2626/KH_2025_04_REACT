@@ -6,6 +6,8 @@ import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import BoardView from './pages/BoardView';
 import Navbar from './components/Navbar';
+import PrivateRoute from './components/PrivateRoute';
+import BoardWrite from './pages/BoardWrite';
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/board/:bno" element={<BoardView />} />
           {/* 보호된 라우트 */}
-
+          <Route element={<PrivateRoute />}>
+            <Route path="/board/write" element={<BoardWrite />} />
+          </Route>
           {/* 경로가 잘못된 경우 */}
           <Route path="*" element={<h2>404 페이지를 찾을 수 없습니다.</h2>} />
         </Routes>

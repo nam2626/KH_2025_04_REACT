@@ -33,6 +33,9 @@ export default () => {
                 <Link to="/admin">관리자 페이지</Link>
               </li>
               <li>
+                <Link to="/board/write">글쓰기</Link>
+              </li>
+              <li>
                 <button onClick={handleLogout}>로그아웃</button>
               </li>
             </>
