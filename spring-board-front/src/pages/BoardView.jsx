@@ -139,6 +139,8 @@ export default () => {
     try {
       const res = await commentWrite(bno, content);
       //새 댓글 목록으로 교체
+      setCommentList(res.commentList);
+      newCommentRef.current.value = '';
     } catch (error) {
       console.log(error);
       alert('댓글 작성 실패');
@@ -210,7 +212,7 @@ export default () => {
                 <strong>{item.username}</strong>
                 <span>{item.cdate}</span>
               </div>
-              <p className="commentContent">{item.content}</p>
+              <p className="commentContent" dangerouslySetInnerHTML={{ __html: item.content.replaceAll('\n', '<br>') }}></p>
               <div className="commentActions">
                 <button onClick={() => handleBoardCommentLikeHate(boardCommentLike, item.cno)}>👍{item.clike}</button>
                 <button onClick={() => handleBoardCommentLikeHate(boardCommentHate, item.cno)}>👎{item.chate}</button>
