@@ -1,6 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { boardCommentDelete, boardCommentHate, boardCommentLike, boardCommentUpdate, boardDelete, boardHate, boardLike, commentWrite, getBoardDetail, getUserData } from '../service/authApi';
+import {
+  boardCommentDelete,
+  boardCommentHate,
+  boardCommentLike,
+  boardCommentUpdate,
+  boardDelete,
+  boardHate,
+  boardLike,
+  commentWrite,
+  getBoardDetail,
+  getUserData,
+  boardMoreComment,
+} from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
 import '../css/BoardView.css';
@@ -13,6 +25,7 @@ export default () => {
   const [commentList, setCommentList] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const newCommentRef = useRef(null);
+  const commentNo = useRef(1);
 
   // 댓글 수정을 위한 수정모드 상태값
   const [editingCommentCno, setEditingCommentCno] = useState(null);
@@ -27,7 +40,7 @@ export default () => {
       setBoard(data.board);
       setFileList(data.fileList);
       setCommentList(data.commentList);
-
+      commentNo.current = data.commentList.length + 1;
       // 로그인 상태일때만 사용자 정보를 읽어오기
       if (isAuthenticated()) {
         const user = await getUserData(); //서버에 다시 요청
@@ -117,6 +130,7 @@ export default () => {
       const data = await boardCommentUpdate(cno, editingCommentContent);
       //서버가 준 내용으로 교체 - 입력했던 내용으로 최신화
       alert(data.msg);
+
       setCommentList(
         commentList.map((item) => {
           if (item.cno === cno) {
@@ -141,9 +155,24 @@ export default () => {
       //새 댓글 목록으로 교체
       setCommentList(res.commentList);
       newCommentRef.current.value = '';
+      commentNo.current = 1 + res.commentList.length;
     } catch (error) {
       console.log(error);
       alert('댓글 작성 실패');
+    }
+  };
+  const handleMoreComments = async () => {
+    //댓글 번호 1, 6, 11 ....
+    try {
+      const commentList = await boardMoreComment(bno, commentNo.current);
+      if (commentList && commentList.length > 0) {
+        setCommentList((prev) => [...prev, ...commentList]);
+        commentNo.current += commentList.length;
+      } else {
+        alert('더이상 읽어올 댓글이 없습니다.');
+      }
+    } catch (error) {
+      console.log('댓글을 추가적으로 불러오는데 실패했습니다.', error);
     }
   };
   if (!board) return <div>게시글 정보가 없습니다.</div>;
@@ -235,6 +264,7 @@ export default () => {
           ),
         )}
       </div>
+      {commentList.length > 0 && <button onClick={handleMoreComments}>댓글 더보기</button>}
     </div>
   );
 };

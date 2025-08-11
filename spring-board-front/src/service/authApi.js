@@ -135,3 +135,10 @@ export const commentWrite = async (bno, content) => {
   const response = await authApi.post('/board/comment', { bno, content });
   return response.data;
 };
+//댓글 더 불러오기
+export const boardMoreComment = async (bno, start) => {
+  const response = await authApi.get(`/board/comment/list/${bno}`, {
+    params: { start },
+  });
+  return response.data;
+};
