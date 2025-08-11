@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { boardCommentDelete, boardCommentHate, boardCommentLike, boardCommentUpdate, boardDelete, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
+import '../css/BoardView.css';
+
 export default () => {
   const { bno } = useParams();
   const navigate = useNavigate();
@@ -131,19 +133,21 @@ export default () => {
   };
   if (!board) return <div>게시글 정보가 없습니다.</div>;
   return (
-    <div>
+    <div className="container">
       {/* 게시글 출력 */}
-      <div>
-        <h2>{board.title}</h2>
-        <div>
+      <div className="boardHeader">
+        <h2 className="boardTitle">{board.title}</h2>
+        <div className="boardMeta">
           <span>작성자 : {board.username}</span>
           <span>조회수 : {board.bcount}</span>
           <span>작성일 : {board.writeDate}</span>
         </div>
         <hr />
-        <div dangerouslySetInnerHTML={{ __html: board.content }}></div>
-        <div>
-          <button onClick={() => handleBoardLikeHate(boardLike, bno)}>👍좋아요 {board.blike}</button>
+        <div className="boardContent" dangerouslySetInnerHTML={{ __html: board.content }}></div>
+        <div className="boardActions">
+          <button className="likeButton" onClick={() => handleBoardLikeHate(boardLike, bno)}>
+            👍좋아요 {board.blike}
+          </button>
           <button onClick={() => handleBoardLikeHate(boardHate, bno)}>👎싫어요 {board.bhate}</button>
         </div>
         <div>
@@ -157,7 +161,7 @@ export default () => {
         </div>
       </div>
       {/* 첨부 파일 목록 출력 */}
-      <div>
+      <div className="fileList">
         {fileList.map((item) => (
           <div key={item.fno}>
             <a href={`http://localhost:9999/api/board/download/${item.fno}`}>{item.fileName}</a>
@@ -166,7 +170,7 @@ export default () => {
       </div>
       {/* 로그인한 사용자만 댓글 작성하는 폼 */}
       {isAuthenticated() ? (
-        <div>
+        <div className="commentForm">
           <h3>댓글 작성</h3>
           <textarea placeholder="댓글을 입력하세요...."></textarea>
           <button>댓글 작성</button>
@@ -175,22 +179,26 @@ export default () => {
         <p>로그인 후 댓글을 작성할 수 있습니다.</p>
       )}
       {/* 댓글 출력 */}
-      <div>
+      <div className="commentList">
         {commentList.map((item) =>
           item.cno === editingCommentCno ? (
-            <div>
+            <div className="editingCommentForm">
               <textarea value={editingCommentContent} onChange={(e) => setEditingCommentContent(e.target.value)}></textarea>
-              <button onClick={() => handleBoardCommentUpdate(item.cno)}>수정하기</button>
-              <button onClick={() => setEditingCommentCno(null)}>취소</button>
+              <button className="commentEditButton" onClick={() => handleBoardCommentUpdate(item.cno)}>
+                수정하기
+              </button>
+              <button className="commentCancelButton" onClick={() => setEditingCommentCno(null)}>
+                취소
+              </button>
             </div>
           ) : (
-            <div>
+            <div className="commentItem">
               <div>
                 <strong>{item.username}</strong>
                 <span>{item.cdate}</span>
               </div>
-              <p>{item.content}</p>
-              <div>
+              <p className="commentContent">{item.content}</p>
+              <div className="commentActions">
                 <button onClick={() => handleBoardCommentLikeHate(boardCommentLike, item.cno)}>👍{item.clike}</button>
                 <button onClick={() => handleBoardCommentLikeHate(boardCommentHate, item.cno)}>👎{item.chate}</button>
                 {/* 댓글 작성자에게만 수정 삭제 버튼 출력  */}
