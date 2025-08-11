@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { boardCommentDelete, boardCommentHate, boardCommentLike, boardCommentUpdate, boardDelete, boardHate, boardLike, getBoardDetail, getUserData } from '../service/authApi';
+import { boardCommentDelete, boardCommentHate, boardCommentLike, boardCommentUpdate, boardDelete, boardHate, boardLike, commentWrite, getBoardDetail, getUserData } from '../service/authApi';
 import { isAuthenticated } from '../utils/authUtil';
 
 import '../css/BoardView.css';
@@ -12,6 +12,8 @@ export default () => {
   const [fileList, setFileList] = useState([]);
   const [commentList, setCommentList] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const newCommentRef = useRef(null);
+
   // 댓글 수정을 위한 수정모드 상태값
   const [editingCommentCno, setEditingCommentCno] = useState(null);
   const [editingCommentContent, setEditingCommentContent] = useState('');
@@ -131,6 +133,17 @@ export default () => {
     setEditingCommentCno(null);
     setEditingCommentContent('');
   };
+  const handleCommentWrite = async () => {
+    const content = newCommentRef.current.value;
+    if (!content.trim()) return alert('댓글 내용을 입력해 주세요');
+    try {
+      const res = await commentWrite(bno, content);
+      //새 댓글 목록으로 교체
+    } catch (error) {
+      console.log(error);
+      alert('댓글 작성 실패');
+    }
+  };
   if (!board) return <div>게시글 정보가 없습니다.</div>;
   return (
     <div className="container">
@@ -172,8 +185,8 @@ export default () => {
       {isAuthenticated() ? (
         <div className="commentForm">
           <h3>댓글 작성</h3>
-          <textarea placeholder="댓글을 입력하세요...."></textarea>
-          <button>댓글 작성</button>
+          <textarea ref={newCommentRef} placeholder="댓글을 입력하세요...."></textarea>
+          <button onClick={handleCommentWrite}>댓글 작성</button>
         </div>
       ) : (
         <p>로그인 후 댓글을 작성할 수 있습니다.</p>

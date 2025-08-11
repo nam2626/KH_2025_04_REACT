@@ -130,3 +130,8 @@ export const boardWrite = async (formData) => {
   });
   return response.data;
 };
+//댓글 글쓰기
+export const commentWrite = async (bno, content) => {
+  const response = await authApi.post('/board/comment', { bno, content });
+  return response.data;
+};
